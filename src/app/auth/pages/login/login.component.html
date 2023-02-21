@@ -1,1 +1,52 @@
-<p>login works!</p>
+<section class="background">
+  <div class="centered-section">
+    <div class="form-section">
+        <div class="text-center">
+            <img src="https://tv.melita.com/assets/theme/images/logo.png" width="280px">
+        </div>
+      <form [formGroup]="form">
+        <div>
+          <mat-form-field class="form-input">
+            <mat-label>Username</mat-label>
+            <input formControlName="username" matInput type="text">
+            <mat-error *ngIf="AuthService.isInvalidControl(form, 'username') && AuthService.getControlError(form, 'username', 'required')">
+              Please enter your username.
+            </mat-error>
+            <mat-error *ngIf="AuthService.isInvalidControl(form, 'username') && AuthService.getControlError(form, 'username', 'emailValidator')">
+              Please enter a valid email.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form-input">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+            <span style="cursor: pointer; margin-right: 15px; color: #919191;" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </span>
+            <mat-error *ngIf="AuthService.isInvalidControl(form, 'password') && AuthService.getControlError(form, 'password', 'required')">
+              Please enter your password.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-footer">
+          <div>
+            <input
+              type="checkbox"
+              id="remeber-me"
+              name="remeber-me"
+              value="yes"
+            />
+            <label for="remeber-me"> Remember Me?</label>
+          </div>
+          <div>
+            <a href="#">Forgot Password?</a>
+          </div>
+        </div>
+        <div class="text-center">
+          <button class="btn-submit" (click)="login()">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
