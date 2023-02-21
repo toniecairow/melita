@@ -1,14 +1,10 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction, props } from "@ngrx/store";
 
-export const loadOffers = createAction(
-  '[UserPage] Load Offers'
-);
+export const loadOffers = createAction("[UserPage] Load Offers");
 
 export const loadSubscriptions = createAction(
-  '[UserPage] Load Subscriptions',
+  "[UserPage] Load Subscriptions",
   props<{ offerId: number }>()
 );
 
-export const logoutUser = createAction(
-  '[UserPage] Logout',
-);
+export const logoutUser = createAction("[UserPage] Logout");

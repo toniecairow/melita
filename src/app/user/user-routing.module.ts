@@ -4,8 +4,8 @@ import { UserDashboardComponent } from "./pages/user-dashboard/user-dashboard.co
 
 const routes: Routes = [
   {
-    path: '',
-    component: UserDashboardComponent
+    path: "",
+    component: UserDashboardComponent,
   },
 ];
 

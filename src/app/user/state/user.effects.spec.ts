@@ -1,25 +1,24 @@
-import { TestBed } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs';
+import { HttpClientModule } from "@angular/common/http";
+import { TestBed } from "@angular/core/testing";
+import { provideMockActions } from "@ngrx/effects/testing";
+import { Observable } from "rxjs";
 
-import { UserEffects } from './user.effects';
+import { UserEffects } from "./user.effects";
 
-describe('UserEffects', () => {
+describe("UserEffects", () => {
   let actions$: Observable<any>;
   let effects: UserEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        UserEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [UserEffects, provideMockActions(() => actions$)],
+      imports: [HttpClientModule],
     });
 
     effects = TestBed.inject(UserEffects);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(effects).toBeTruthy();
   });
 });

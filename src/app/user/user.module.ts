@@ -1,29 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
 
 // material
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from "@angular/material/icon";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatCardModule } from "@angular/material/card";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 // routing
-import { UserRoutingModule } from './user-routing.module';
+import { UserRoutingModule } from "./user-routing.module";
 // @ngrx
-import { userReducer } from './state/user.reducer';
-import { UserEffects } from './state/user.effects';
+import { userReducer } from "./state/user.reducer";
+import { UserEffects } from "./state/user.effects";
 // components
-import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
-
-
+import { UserDashboardComponent } from "./pages/user-dashboard/user-dashboard.component";
 
 @NgModule({
-  declarations: [
-    UserDashboardComponent
-  ],
+  declarations: [UserDashboardComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -36,9 +32,9 @@ import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.co
     // routing
     UserRoutingModule,
     // @ngrx
-    StoreModule.forFeature('user', userReducer),
+    StoreModule.forFeature("user", userReducer),
     EffectsModule.forFeature([UserEffects]),
   ],
-  providers: []
+  providers: [],
 })
-export class UserModule { }
+export class UserModule {}
