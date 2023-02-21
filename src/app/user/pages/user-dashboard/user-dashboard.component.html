@@ -1,0 +1,59 @@
+<mat-toolbar class="top-nav">
+  <span>Home</span>
+  <div>
+    <button (click)="logout()" class="btn-secondary">Logout</button>
+  </div>
+</mat-toolbar>
+
+<div class="content">
+  <div>
+    <button class="btn-secondary" [disabled]="buttonDisabled" (click)="disableFetch()">Refresh
+        <small *ngIf="timer$ | async as timer">
+          <span *ngIf="buttonDisabled">({{6 - timer}})</span>
+        </small>
+    </button>
+  </div>
+
+  <mat-progress-bar *ngIf="offersLoading" mode="indeterminate"></mat-progress-bar>
+
+  <div class="flex-container">
+    <ng-template ngFor [ngForOf]="offers$ | async" let-offer let-i="index">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-subtitle> {{ offer.contractStartDate | date }} to  {{ offer.contractEndDate | date }} </mat-card-subtitle>
+          <mat-card-title> {{offer?.name}} </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Offer description</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn-secondary" [disabled]="buttonDisabled" (click)="getSubscriptions(offer.id)">Subscriptions</button>
+        </mat-card-actions>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+    </ng-template>
+  </div>
+
+  <div class="flex-container">
+    <ng-template ngFor [ngForOf]="subscriptions$ | async" let-subscription let-i="index">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-subtitle> {{ subscription?.type }} </mat-card-subtitle>
+          <mat-card-title> {{ subscription?.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ subscription?.line }}</p>
+          <br><p *ngFor="let usage of subscription?.usage"> type: {{ usage?.type }} </p>
+          <p *ngFor="let usage of subscription?.usage"> limit: {{ usage?.limit | number }} </p>
+          <p *ngFor="let usage of subscription?.usage"> used: {{ usage?.used | number }} <br></p>
+        </mat-card-content>
+        <mat-card-footer>
+        </mat-card-footer>
+      </mat-card>
+    </ng-template>
+  </div>
+
+</div>
+
+
